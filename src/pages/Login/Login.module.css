@@ -1,0 +1,65 @@
+.Header {
+    background-color: var(--blue);
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.Login {
+    height: calc(80vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.Box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px 0px gray;
+    margin: 20px;
+    padding: 30px 0;
+    gap: 10px;
+    border-radius: 10px;
+    color: var(--blue);
+}
+
+.InputGroup h1{
+    font-size: 18px;
+    text-align: left;
+}
+
+.InputGroup input {
+    height: 40px;
+    width: 80vw;
+    border-radius: 10px;
+    text-indent: 5px;
+    font-size: 16px;
+}
+
+.InputGroup input:focus {
+    outline-color: var(--blue);
+}
+
+.Or {
+    font-size: 18px;
+}
+
+.Microsoft {
+    font-size: 16px;
+    background-color: var(--blue);
+    color: white;
+    height: 50px;
+    width: 80vw;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

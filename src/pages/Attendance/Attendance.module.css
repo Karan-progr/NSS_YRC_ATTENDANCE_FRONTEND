@@ -1,0 +1,55 @@
+.Attendance {
+    padding-top: 120px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    overflow: hidden;
+}
+
+.AttendanceCard {
+    display: flex;
+    height: 80px;
+    width: 90%;
+    box-shadow: 0px 0px 10px 0px gray;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.AttendanceCard span {
+    width: 90%;
+    border: 2px solid var(--blue);
+    border-radius: 20px;
+    height: 10px;
+}
+
+.AttendanceCard p {
+    align-self: flex-end;
+    font-weight: bold;
+    color: var(--blue);
+    margin: 0 5%;
+}
+
+
+.Menu {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 30px;
+}
+
+.Underline {
+    border-bottom: 2px solid var(--blue);
+    font-weight: bold;
+    color: var(--blue);
+}
+
+.Events {
+    width: 95%;
+    padding-bottom: 20px;
+    border-radius: 20px;
+}

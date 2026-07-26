@@ -1,0 +1,33 @@
+#html5-qrcode-anchor-scan-type-change {
+    display: none;
+}
+
+.body {
+    padding: 20px;
+    background-color: var(--blue);
+    height: 100vh;
+}
+
+#reader {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--white);
+    border-radius: 10px;
+}
+
+#reader__dashboard_section_csr {
+    width: fit-content;
+    margin: 0 20vw;
+
+}
+
+#reader__dashboard_section_csr button {
+    background-color: var(--blue);
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+}
