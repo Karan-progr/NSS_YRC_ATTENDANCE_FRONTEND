@@ -73,12 +73,16 @@
     align-items: center;
     opacity: 0;
     gap: 20px;
+    transform: translateY(-20px);
+    color: rgba(255, 255, 255, 0);
 }
 
 .Open {
     height: fit-content;
     padding: 10px 0;
     opacity: 1;
+    transform: translateY(0);
+    color: var(--white);
 }
 
 .MenuButton {

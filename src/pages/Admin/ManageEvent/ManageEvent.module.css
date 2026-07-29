@@ -1,0 +1,116 @@
+.ManageEvent {
+    position: fixed;
+    margin-left: 250px;
+    display: flex;
+    width: calc(100% - 250px);
+    height: 80vh;
+    overflow-y: scroll;
+    justify-content: center;
+    padding-top: 150px;
+}
+
+.FloatingCard {
+    height: 100px;
+    border: 1px solid black;
+    box-shadow: 0px 0px 20px 0px gray;
+    border-radius: 10px;
+    display: none;
+}
+
+.EventDetails {
+    position: relative;
+}
+
+.EventDetails .Title{
+    width: 100%;
+    line-height: 50px;
+    border: none;
+    border-bottom: 2px solid var(--blue);
+    outline: none;
+    font-size: 24px;
+}
+
+.Row2 {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    
+}
+
+.Row2 input {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--blue);
+    line-height: 20px;
+    margin: 40px 0;
+    font-size: 14px;
+}
+
+.Row2 input:first-child{
+    width: inherit;
+}
+
+.Row2 input:last-child{
+    width: 50px;
+}
+
+.EndTime {
+    padding: 40px;
+}
+
+.Sessions{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.NewSession {
+    padding: 10px;
+    border: 1px solid var(--blue);
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.295);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.NewSession:hover {
+    cursor: pointer;
+}
+
+.Save {
+    position: absolute;
+    top: -50px;
+    right: 0px;
+    background-color: var(--blue);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.Save:hover {
+    cursor: pointer;
+}
+
+.Delete {
+    position: absolute;
+    top: -50px;
+    right: 80px;
+    background-color: var(--red);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.TakeAttendance {
+    position: absolute;
+    top: -50px;
+    left: 0px;
+    background-color: var(--blue);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}

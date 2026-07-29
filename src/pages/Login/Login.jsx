@@ -1,19 +1,14 @@
 import React from 'react'
 import styles from './Login.module.css'
-import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../../auth/msalConfig";
+import API_URL from '../../config';
 
 
 const Login = () => {
 
-    const { instance } = useMsal();
 
-    const handleMicrosoftLogin = async () => {
-        try {
-            await instance.loginRedirect(loginRequest);
-        } catch (err) {
-            console.error(err);
-        }
+    const login = () => {
+        window.location.href =
+            `${API_URL}/auth/microsoft`;
     };
 
 
@@ -32,8 +27,8 @@ const Login = () => {
                 <input />
             </div>
             <h1 className={styles.Or}>or</h1>
-            <h1 className={styles.Microsoft} onClick={async ()=>{
-                handleMicrosoftLogin();
+            <h1 className={styles.Microsoft} onClick={()=>{
+                login();
             }}>Continue With Microsoft <img src='microsoft.png' alt="Logo"></img></h1>
         </div>
     </div>

@@ -9,7 +9,7 @@
     padding: 0 10px;
     align-items: center;
     color: var(--blue);
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .Title {
@@ -19,7 +19,7 @@
 }
 
 .Time {
-    font-size: 14px;
+    font-size: 12px;
     text-align: left;
     grid-area: Time;
 }
@@ -30,7 +30,7 @@
 }
 
 .Status {
-    font-size: 16px;
+    font-size: 12px;
     display: flex;
     align-items: center;
     gap: 3px;

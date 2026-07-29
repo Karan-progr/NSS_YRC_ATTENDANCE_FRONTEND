@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './EventCard.module.css'
+import API_URL from '../../../../config';
 
-const EventCard = ({Title, Description, Time, Position}) => {
+const EventCard = ({Position, Time, Title}) => {
+
   return (
     <div className={styles.EventCard}>
         <div className={styles.Timeline}>

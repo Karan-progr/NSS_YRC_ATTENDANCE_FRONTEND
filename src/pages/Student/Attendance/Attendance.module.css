@@ -24,7 +24,8 @@
     width: 90%;
     border: 2px solid var(--blue);
     border-radius: 20px;
-    height: 10px;
+    height: 15px;
+    margin: 5px 0;
 }
 
 .AttendanceCard p {
@@ -49,7 +50,10 @@
 }
 
 .Events {
-    width: 95%;
+    width: 90%;
     padding-bottom: 20px;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

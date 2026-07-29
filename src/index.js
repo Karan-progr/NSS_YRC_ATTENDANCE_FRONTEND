@@ -5,19 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
-import { MsalProvider } from "@azure/msal-react";
-import { msalInstance } from "./auth/msalConfig";
-
 
 async function start() {
-    await msalInstance.initialize();
 
     ReactDOM.createRoot(document.getElementById("root")).render(
         <React.StrictMode>
           <BrowserRouter>
-            <MsalProvider instance={msalInstance}>
                 <App />
-            </MsalProvider>
           </BrowserRouter>
         </React.StrictMode>
     );

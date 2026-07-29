@@ -1,40 +1,28 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Dashboard from './pages/Dashboard/Dashboard'
+import Dashboard from './pages/Student/Dashboard/Dashboard'
 import Login from './pages/Login/Login';
-import EventDetail from './pages/EventDetails/EventDetail';
-import Scanner from './pages/Scanner/Scanner';
-import Attendance from './pages/Attendance/Attendance'
+import EventDetail from './pages/Student/EventDetails/EventDetail';
+import Scanner from './pages/Student/Scanner/Scanner';
+import Attendance from './pages/Student/Attendance/Attendance'
 import { useEffect } from 'react';
-import { useMsal } from "@azure/msal-react";
+import AdminDashboard from './pages/Admin/AdminDashboard/AdminDashboard';
+import AdminLayout from './pages/Admin/AdminLayout';
+import StudentLayout from './pages/Student/StudentLayout';
+import ManageEvent from './pages/Admin/ManageEvent/ManageEvent';
 
 function App() {
-  const { instance } = useMsal();
-
-    useEffect(() => {
-
-        instance.handleRedirectPromise()
-            .then((response) => {
-
-                if (response) {
-
-                    console.log(response.account);
-
-                }
-
-            })
-            .catch(console.error);
-
-    }, []);
 
   return (
     <div className="App">
       <Routes>
-        <Route path={"/"} element={<Dashboard />}></Route>
         <Route path={"/login"} element={<Login />}></Route>
-        <Route path={"/event-details"} element={<EventDetail />}></Route>
+        <Route path={"/"} element={<StudentLayout> <Dashboard /></StudentLayout>}></Route>
+        <Route path={"/event-details/:eventId"} element={<StudentLayout><EventDetail /></StudentLayout>}></Route>
         <Route path={"/scanner"} element={<Scanner />}></Route>
-        <Route path={"/attendance"} element={<Attendance />}></Route>
+        <Route path={"/attendance"} element={<StudentLayout><Attendance /></StudentLayout>}></Route>
+        <Route path={"/admin/dashboard"} element={<AdminLayout><AdminDashboard /></AdminLayout>}></Route>
+        <Route path={"/admin/event-details/:eventId"} element={<AdminLayout><ManageEvent /></AdminLayout>}></Route>
       </Routes>
     </div>
   );

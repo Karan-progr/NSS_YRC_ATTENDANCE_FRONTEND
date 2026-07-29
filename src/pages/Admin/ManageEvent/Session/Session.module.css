@@ -1,0 +1,21 @@
+.Session {
+    box-shadow: 0px 0px 10px 0px rgba(128, 128, 128, 0.37);
+    border-radius: 10px;
+}
+
+.Session .Title {
+    width: calc(100% - 40px);
+    border: none;
+    outline: none;
+    border-bottom: 1px solid gray;
+    line-height: 30px;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.Session input:last-child {
+    width: 200px;
+    border: none;
+    outline: none;
+    padding: 20px;
+}

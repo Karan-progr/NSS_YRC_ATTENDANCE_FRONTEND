@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './Header.module.css'
 import { Link } from 'react-router-dom';
 
 const Header = ({Name, Organisation, Photo}) => {
   
-  const [width, setWidth] = useState([60, 45, 30]);
   const [open, setOpen] = useState(false);
+
+  const [width, setWidth] = useState([60, 45, 30]);
+
     return (
     <div className={styles.Header}>
         <img src={Photo} alt="Photo" />
@@ -20,7 +22,7 @@ const Header = ({Name, Organisation, Photo}) => {
             <span style={{width: `${width[1]}px`}}></span>
             <span style={{width: `${width[2]}px`}}></span>
         </div>
-        <div className={`${styles.Menu} ${open ? styles.Open:""}`}>
+        <div className={`${styles.Menu} ${open ? styles.Open:""}`} onClick={()=>setOpen(false)}>
             <h1 className={styles.MenuButton}>Posts</h1>
             <Link className={styles.MenuButton} to="/attendance">Attendance</Link>
             <h1 className={styles.MenuButton}>Settings</h1>

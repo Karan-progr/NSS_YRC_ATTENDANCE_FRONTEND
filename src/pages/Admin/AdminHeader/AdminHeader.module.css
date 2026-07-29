@@ -1,0 +1,66 @@
+.AdminHeader {
+    width: 100vw;
+    height: 75px;
+    background-color: var(--blue);
+    align-items: center;
+    position: fixed;
+    z-index: 10;
+}
+
+.AdminHeader .Banner {
+    height: 60px;
+    position: fixed;
+    left: 40px;
+    top: 10px;
+}
+
+.AdminHeader .Photo {
+    position: fixed;
+    right: 20px;
+    top: 18px;
+    width: 30px;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 10px;
+    transition: all 1s ease;
+    overflow: hidden;
+    height: 20px;
+
+    animation: expand 0.8s forwards;
+
+}
+
+.Photo img {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    border: 1px solid var(--blue);
+    right: 6px;
+    position: absolute;
+    top: 3px;
+}
+
+.Photo .Name {
+    opacity: 0;
+    margin-right: 50px;
+    animation: showName 0.3s ease forwards;
+    animation-delay: 0.6s;
+}
+
+@keyframes expand {
+    from{
+        width: 30px;
+    }
+    to{
+        width: 300px;
+    }
+}
+
+@keyframes showName {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

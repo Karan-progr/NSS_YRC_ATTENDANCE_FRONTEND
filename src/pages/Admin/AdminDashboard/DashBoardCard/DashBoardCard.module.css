@@ -1,0 +1,37 @@
+.DashBoardCard {
+    border: 1px solid var(--blue);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0px 0px 20px 0px gray;
+}
+
+.DashBoardCard h2 {
+    background-color: var(--blue);
+    color: var(--white);
+    border-radius: inherit;
+    line-height: 50px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.DashBoardCard .Components {
+    text-align: left;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-weight: bold;
+}
+
+.DashBoardCard .Components:hover {
+    cursor: pointer;
+}
+
+
+.Components div {
+    display: flex;
+    gap: 10px;
+}
