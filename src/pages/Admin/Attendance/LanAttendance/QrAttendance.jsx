@@ -8,45 +8,49 @@ import { waitFor } from "@testing-library/dom";
 const QrAttendance = () => {
     const params = useParams();
     const event_id = params.eventId;
-    const attendance_type = params.attendance_type;
+    const attendanceType = params.attendance_type1;
+    const modeOfAttendance = params.attendance_type2;
 
     const [qrDetails, setQrDetails] = useState(null);
     const [qrImage, setQrImage] = useState("");
-    const [ip, setIp] = useState(null);
+    const [url, seturl] = useState(null);
+
+    async function getip () {
+            const res = await fetch (`http://localhost:3501/url`);
+            return await res.text();
+    }
+
+    async function uploadurl(url) {
+        const res = await fetch(`${API_URL}/seturl/${event_id}`, {
+            method:"POST",
+            credentials:"include",
+            headers:{
+                "Content-Type":"text/plain"
+            },
+            body:url
+        });
+        console.log (url);
+    }
 
 
     useEffect(() => {
 
-        if (attendance_type === "lan")
-        {async function getIp () {
-            const res = await fetch (`http://localhost:3501/ip`);
-            return await res.text();
-        }
+        if (modeOfAttendance === "lan"){
 
-        async function uploadIp(ip) {
-            const res = await fetch(`${API_URL}/setip/${event_id}`, {
-                method:"POST",
-                credentials:"include",
-                headers:{
-                    "Content-Type":"text/plain"
-                },
-                body:ip
-            });
+            async function inturl() {
+                const ip = await getip();
+                seturl(`http://${ip}:3051/submit`);
+                await uploadurl(url);
+            }
+            
+            inturl();
         }
-
-        async function intIp() {
-            const ip = await getIp();
-            setIp(ip);
-            await uploadIp(ip);
-        }
-        
-        intIp();}
 
         else {
-            
+            uploadurl (`${API_URL}/submit-attendance`);
         }
-
-        const ws = new WebSocket(`ws://localhost:3500/${event_id}/qrstream`);
+        if (attendanceType === "qr")
+        {const ws = new WebSocket(`ws://localhost:3500/${event_id}/qrstream`);
 
         ws.onopen = () => {
             console.log("Connected to server");
@@ -64,10 +68,13 @@ const QrAttendance = () => {
             }
         };
 
-        return () => ws.close();
+        return () => ws.close();}
+        else if(attendanceType === "code") {
+            //logic for code based attendance
+        }
     }, [event_id]);
 
-    useEffect(() => {console.log (ip)}, [ip])
+    useEffect(() => {console.log (url)}, [url])
 
     return (
         <div className={styles.QrAttendance}>

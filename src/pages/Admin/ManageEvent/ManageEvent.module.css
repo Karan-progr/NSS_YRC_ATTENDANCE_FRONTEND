@@ -42,22 +42,48 @@
     box-shadow: 0px 0px 20px 0px gray;
     border-radius: 10px;
     position: fixed;
-    top: 40%;
+    top: 20%;
     z-index: 20;
     background-color: var(--white);
     transition: all 0.3s ease;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     overflow: hidden;
     align-items: center;
     width: 0px;
     transform: translateY(100px);
+    padding: 30px 0;
 }
 
 .FloatingCard.popup {
-    height: 200px;    
+    height: 500px;    
     width: 800px;
     transform: translateY(0);
+}
+
+.optionOne {
+    display: flex;
+    gap: 30px;
+}
+
+.Highlight {
+    border: 2px solid var(--blue);
+}
+
+.optionTwo {
+    height: 0;
+    overflow-y: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    gap: 30px;
+    width: 600px;
+    justify-content: center;
+    padding: 30px;
+}
+
+.expand {
+    height: 200px;
 }
 
 .Icon {
@@ -66,7 +92,7 @@
     padding: 10px;
     border-radius: inherit;
     height: 150px;
-    width: 100px;
+    width: 150px;
     transition: all 0.3s ease;
 }
 
@@ -75,7 +101,7 @@
 }
 
 .Icon:hover {
-    box-shadow: 0 0 30px 0 #000080a9;
+    box-shadow: 0 0 30px 0 #0000005d;
     transform: translateY(-5px);
     cursor: pointer;
 }
@@ -188,4 +214,8 @@
 
 .EndTimeLabel {
     padding: 5px;
+}
+
+.Proceed {
+    cursor: pointer;
 }

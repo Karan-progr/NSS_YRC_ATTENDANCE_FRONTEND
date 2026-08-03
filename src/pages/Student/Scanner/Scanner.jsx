@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
 import { Html5QrcodeScanner } from "html5-qrcode";
 import { useEffect } from "react";
@@ -7,8 +7,25 @@ import API_URL from '../../../config';
 
 function Scanner() {
   const navigate = useNavigate();
-  const ip = localStorage.getItem("ip");
-  console.log (ip);
+
+  params = useParams();
+  const event_id = params.event_id;
+  
+  const [attendanceUrl, setAttendanceUrl] = useState(null);
+  
+  useEffect(() => {
+    async function getAttendanceUrl() {
+      const res = fetch(`${API_URL}/${event_id}get-attendance-url`, 
+        {
+          credentials:"include"
+        }
+      );
+
+      const data = await res.text();
+      setAttendanceUrl(data);
+
+    }
+  }, [])
 
   const params = useParams();
 
@@ -32,7 +49,7 @@ function Scanner() {
 
             const qrData = JSON.parse(decodedText);
 
-            await fetch(`http://${ip}/submit-attendance`, {
+            await fetch(`${attendanceUrl}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -40,7 +57,6 @@ function Scanner() {
                 credentials: "include",
                 body: JSON.stringify({
                   token:qrData,
-
                 })
             });
 

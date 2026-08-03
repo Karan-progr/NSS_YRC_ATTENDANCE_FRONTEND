@@ -24,7 +24,7 @@ function App() {
         <Route path={"/attendance"} element={<StudentLayout><Attendance /></StudentLayout>}></Route>
         <Route path={"/admin/dashboard"} element={<AdminLayout><AdminDashboard /></AdminLayout>}></Route>
         <Route path={"/admin/event-details/:eventId"} element={<AdminLayout><ManageEvent /></AdminLayout>}></Route>
-        <Route path={"/admin/:eventId/:attendance_type"} element={<LanAttendance />}></Route>
+        <Route path={"/admin/attendance/:eventId/:attendance_type1/:attendance_type2"} element={<LanAttendance />}></Route>
       </Routes>
     </div>
   );

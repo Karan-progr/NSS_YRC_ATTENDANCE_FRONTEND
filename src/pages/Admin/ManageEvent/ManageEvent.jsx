@@ -7,6 +7,7 @@ import { FaCamera, FaWifi } from "react-icons/fa";
 import { FaTowerCell } from "react-icons/fa6";
 import { Bs123 } from "react-icons/bs";
 import { useParams } from "react-router-dom";
+import { ImQrcode } from "react-icons/im";
 
 const ManageEvent = () => {
 
@@ -27,6 +28,8 @@ const ManageEvent = () => {
             }
         ]
     });
+
+    const [choice, setChoice] = useState([null, null]);
 
     useEffect(() => {
         async function getEventData() {
@@ -107,9 +110,9 @@ const ManageEvent = () => {
 
     }
 
-    async function preAttendanceSetup(choice) {
+    async function handleAttendance(choice) {
 
-        window.location.href = `../${eventId}/${choice}`;
+        window.location.href = `/admin/attendance/${eventId}/${choice[0]}/${choice[1]}`;
 
     }
 
@@ -119,29 +122,63 @@ const ManageEvent = () => {
 
             <div className={`${styles.FloatingCard} ${popup ? styles.popup : ""}`}>
 
-                <div className={styles.Icon}
-                    onClick={() => {
-                        console.log ("Clicked");
-                        preAttendanceSetup("lan");
-                    }}>
-                    <FaWifi />
-                    <p>LAN</p>
+                <div className={styles.optionOne}>
+                    <div
+                        className={`${styles.Icon} ${
+                            choice[0] === "qr" ? styles.Highlight : ""
+                        }`}
+                        onClick={() => setChoice(prev => ["qr", prev[1]])}
+                    >
+                        <ImQrcode />
+                        <p>QR</p>
+                    </div>
+
+                    <div
+                        className={`${styles.Icon} ${
+                            choice[0] === "code" ? styles.Highlight : ""
+                        }`}
+                        onClick={() => setChoice(prev => ["code", prev[1]])}
+                    >
+                        <Bs123 />
+                        <p>Secret Code</p>
+                    </div>
+
+                    <div
+                        className={`${styles.Icon} ${
+                            choice[0] === "selfi" ? styles.Highlight : ""
+                        }`}
+                        onClick={() => setChoice(prev => ["selfi", prev[1]])}
+                    >
+                        <FaCamera />
+                        <p>Selfi</p>
+                    </div>
                 </div>
 
-                <div className={styles.Icon} onClick={() => preAttendanceSetup("internet")}>
-                    <FaTowerCell />
-                    <p>Internet</p>
+                <div className={`${styles.optionTwo} ${choice[0] ? styles.expand : ""}`}>
+                    <div
+                        className={`${styles.Icon} ${
+                            choice[1] === "internet" ? styles.Highlight : ""
+                        }`}
+                        onClick={() => setChoice(prev => [prev[0], "internet"])}
+                    >
+                        <FaTowerCell />
+                        <p>Record Attendance via Internet</p>
+                    </div>
+
+                    <div
+                        className={`${styles.Icon} ${
+                            choice[1] === "wifi" ? styles.Highlight : ""
+                        }`}
+                        onClick={() => setChoice(prev => [prev[0], "wifi"])}
+                    >
+                        <FaWifi />
+                        <p>Record Attendance only through Wi-Fi</p>
+                    </div>
                 </div>
 
-                <div className={styles.Icon} onClick={preAttendanceSetup}>
-                    <Bs123 />
-                    <p>Secret Code</p>
-                </div>
-
-                <div className={styles.Icon} onClick={preAttendanceSetup}>
-                    <FaCamera />
-                    <p>Selfie</p>
-                </div>
+                {choice[0] && choice[1] && <div className={styles.Proceed} onClick={() => handleAttendance(choice)}>
+                    Proceed
+                </div>}
 
             </div>
 
