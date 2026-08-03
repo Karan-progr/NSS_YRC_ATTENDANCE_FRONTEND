@@ -58,16 +58,10 @@ const Attendance = () => {
                 {
                   tab === "Attended"
                   ?attended.map ((event) => 
-                    <EventCard key={event.event_id} Title={event.title} Credits={event.credits} Time={new Date(event.starttime).toLocaleString("en-IN", {
-                      dateStyle: "medium",
-                      timeStyle: "short",
-                    })} Status={event.status} EventID={event.event_id}/>
+                    <EventCard key={event.event_id} Title={event.title} Credits={event.credits} date={event.date} Status={event.status} EventID={event.event_id}/>
                   )
                   :missed.map ((event) => 
-                    <EventCard key={event.event_id} Title={event.title} Credits={event.credits} Time={new Date(event.starttime).toLocaleString("en-IN", {
-                      dateStyle: "medium",
-                      timeStyle: "short",
-                    })} Status={event.status} EventID={event.event_id}/>
+                    <EventCard key={event.event_id} Title={event.title} Credits={event.credits} date={event.date} Status={event.status} EventID={event.event_id}/>
                 )}
               </div>
           </div>

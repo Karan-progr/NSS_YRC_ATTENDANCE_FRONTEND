@@ -9,8 +9,12 @@ import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
 
-  const [events, setEvents] = useState();
+  const [events, setEvents] = useState([]);
   const navigate = useNavigate();
+
+  const [happened, setHappened] = useState([]);
+  const [happening, setHappening] = useState([]);
+  const [YetToHappen, setYetToHappen] = useState([]);
 
   useEffect(() => {
     async function getData (){
@@ -24,55 +28,30 @@ const AdminDashboard = () => {
           return;
         }
         const data = await res.json();
-        localStorage.setItem("Events", JSON.stringify(data));
-        setEvents(JSON.parse(localStorage.getItem("Events")));
+        setEvents(data);
+        console.log (data);
+
+        setHappened (data.filter((event) => event.status === "Happened"));
+        setHappening (data.filter((event) => event.status === "Happening"));
+        setYetToHappen (data.filter((event) => event.status === "Yet To Happen"));
+
       }
       catch(e){
-        console.log ("Failed to fetch eventdata");
+        console.log ("Failed to fetch eventdata" , e);
         navigate("/login");
       }
     }
     getData();
   }, [])
 
+
+
   useEffect(() => {
-    
-  },[events])
+    console.log ("happened list", happened);
+  },[happened])
 
-  function formatTime(dateTime) {
-      const date = new Date(dateTime);
-      const today = new Date();
-      const tomorrow = new Date(today);
 
-      tomorrow.setDate(today.getDate() + 1);
-
-      const isSameDay = (d1, d2) =>
-          d1.getFullYear() === d2.getFullYear() &&
-          d1.getMonth() === d2.getMonth() &&
-          d1.getDate() === d2.getDate();
-
-      const time = date.toLocaleTimeString("en-US", {
-          hour: "numeric",
-          minute: "2-digit",
-          hour12: true,
-      });
-
-      if (isSameDay(date, today)) {
-          return `Today, ${time}`;
-      }
-
-      if (isSameDay(date, tomorrow)) {
-          return `Tomorrow, ${time}`;
-      }
-
-      const formattedDate = date.toLocaleDateString("en-IN", {
-          day: "numeric",
-          month: "short",
-          year: "numeric",
-      });
-
-      return `${formattedDate}, ${time}`;
-  }
+  if (!events) return ("loading");
   
   return (
     <div className={styles.AdminDashboard}>
@@ -92,15 +71,57 @@ const AdminDashboard = () => {
           ]} />
         </div>
         <div className={styles.Main}>
-          {events?.filter((event) => event.status === "Happening").length > 0 && <h1>Current Event</h1>}
-          <div className={styles.UpcomingEvents}>
-              {events?.filter((Event) => Event.status === "Happening").map((Event) => <EventCard key={Event.title} Title={Event.title} Credits={Event.credits} Time={`Ends by ${formatTime(Event.endtime)}`} Status={Event.status} EndTime = {Event.endTime} EventID = {Event.event_id}/>)}
-          </div>
-          <h1>Upcoming Events</h1>
-          <div className={styles.UpcomingEvents}>
-              {events?.filter((Event) => Event.status === "Yet To Happen").map((Event) => <EventCard key={Event.title} Title={Event.title} Credits={Event.credits} Time={`Starts ${formatTime(Event.starttime)}`} Status={Event.status} EndTime = {Event.endtime} EventID = {Event.event_id}/>)}
-          </div>
-      </div>
+          {happening.length > 0 && (
+            <div className={styles.UpcomingEvents}>
+              <h1>Current Events</h1>
+              {happening.map((Event) => (
+                <EventCard
+                  key={Event.event_id}
+                  Title={Event.title}
+                  Credits={Event.credits}
+                  date={`Ends by ${Event.endtime.slice(0, 5)}`}
+                  Status={Event.status}
+                  EndTime={Event.endtime}
+                  EventID={Event.event_id}
+                />
+              ))}
+            </div>
+          )}
+
+          {YetToHappen.length > 0 && (
+            <div className={styles.UpcomingEvents}>
+              <h1>Upcoming Events</h1>
+              {YetToHappen.map((Event) => (
+                <EventCard
+                  key={Event.event_id}
+                  Title={Event.title}
+                  Credits={Event.credits}
+                  date={`Starts on ${Event.date.split("T")[0].split('-').reverse().join('-')} at ${Event.endtime.slice(0, 5)}`}
+                  Status={Event.status}
+                  EndTime={Event.endtime}
+                  EventID={Event.event_id}
+                />
+              ))}
+            </div>
+          )}
+
+          {happened.length > 0 && (
+            <div className={styles.UpcomingEvents}>
+              <h1>Finished Events</h1>
+              {happened.map((Event) => (
+                <EventCard
+                  key={Event.event_id}
+                  Title={Event.title}
+                  Credits={Event.credits}
+                  date={`Ended on ${Event.date.split("T")[0].split('-').reverse().join('-')} at ${Event.endtime.slice(0, 5)}`}
+                  Status={Event.status}
+                  EndTime={Event.endtime}
+                  EventID={Event.event_id}
+                />
+              ))}
+            </div>
+          )}
+        </div>
     </div>
   )
 }

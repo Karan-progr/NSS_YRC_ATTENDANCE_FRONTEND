@@ -12,6 +12,19 @@
     border-radius: 10px;
 }
 
+.EventHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.Box .MarkAttendance {
+    font-size: 14px;
+    padding: 20px;
+    color: var(--blue);
+}
+
 .Title {
     font-size: 20px;
     text-align: left;

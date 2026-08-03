@@ -1,13 +1,37 @@
-import React from 'react'
-import styles from './Session.module.css'
+import styles from "./Session.module.css";
 
-const Session = ({Title, Time}) => {
-  return (
-    <div className={styles.Session}>
-        <input className={styles.Title} type="text" placeholder='Session Title' required value={Title} />
-        <input type="datetime-local" required value={Time}/>
-    </div>
-  )
-}
+const Session = ({ session, index, updateSession }) => {
 
-export default Session
+    return (
+
+        <div className={styles.Session}>
+
+            <input
+                className={styles.Title}
+                placeholder="Session Title"
+                value={session.title}
+                onChange={(e) =>
+                    updateSession(index, "title", e.target.value)
+                }
+            />
+
+            <input className={styles.Time}
+                title="Expected start time of the event"
+                type="time"
+                value={
+                    session.starttime
+                        ? session.starttime
+                        : ""
+                }
+                onChange={(e) =>
+                    updateSession(index, "starttime", e.target.value)
+                }
+            />
+
+        </div>
+
+    );
+
+};
+
+export default Session;

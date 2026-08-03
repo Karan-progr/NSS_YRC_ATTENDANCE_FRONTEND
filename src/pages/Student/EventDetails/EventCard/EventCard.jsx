@@ -11,9 +11,9 @@ const EventCard = ({Position, Time, Title}) => {
             {Position === "first" && <span className={styles.Rectangle}></span>}
         </div>
         <h1 className={styles.EventTitle}>{Title}</h1>
-        <p className={styles.Time}>{new Date(Time).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}</p>
+        <p className={styles.Time}>{Time.slice(0, 5)}</p>
     </div>
-  )
+  ) 
 }
 
 export default EventCard
